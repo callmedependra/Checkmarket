@@ -47,7 +47,7 @@ def send_market_email(status):
 
     subject = f"Market Status Update: {status}"
     body = f"""
-Market Status Changed
+Market Status Changed of  User Acceptance Testing (UAT) environment for ATrad's online stock trading platform in Nepal
 
 New Status: {status}
 Time (Asia/Kathmandu): {kathmandu_time.strftime('%Y-%m-%d %H:%M:%S')}
@@ -66,28 +66,6 @@ Time (Asia/Kathmandu): {kathmandu_time.strftime('%Y-%m-%d %H:%M:%S')}
     except Exception as e:
         print(f"[{kathmandu_time}] ✗ Email failed: {e}")
 
-
-# def send_market_email(status):
-#     subject = f"Market Status Update: {status}"
-#     body = f"""
-# Market Status Changed
-
-# New Status: {status}
-# Time: {datetime.now()}
-# """
-
-#     msg = MIMEText(body)
-#     msg["Subject"] = subject
-#     msg["From"] = SENDER_EMAIL
-#     msg["To"] = ", ".join(RECEIVER_EMAILS)
-
-#     try:
-#         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-#             server.login(SENDER_EMAIL, SENDER_PASSWORD)
-#             server.sendmail(SENDER_EMAIL, RECEIVER_EMAILS, msg.as_string())
-#             print(f"[{datetime.now()}] ✓ Email sent ({status})")
-#     except Exception as e:
-#         print(f"[{datetime.now()}] ✗ Email failed: {e}")
 
 
 
@@ -229,6 +207,7 @@ def main():
     job()  # run once immediately
 
     schedule.every(1).minutes.do(job)  # schedule job every 1 minute
+    
 
     try:
         while True:
