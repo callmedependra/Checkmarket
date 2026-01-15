@@ -62,9 +62,9 @@ Time (Asia/Kathmandu): {kathmandu_time.strftime('%Y-%m-%d %H:%M:%S')}
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(SENDER_EMAIL, SENDER_PASSWORD)
             server.sendmail(SENDER_EMAIL, RECEIVER_EMAILS, msg.as_string())
-            print(f"[{kathmandu_time}] ✓ Email sent ({status})")
+            print(f"[{kathmandu_time}]  Email sent ({status})")
     except Exception as e:
-        print(f"[{kathmandu_time}] ✗ Email failed: {e}")
+        print(f"[{kathmandu_time}]  Email failed: {e}")
 
 
 
@@ -123,7 +123,7 @@ def get_market_status(session):
         json_response = json.loads(response_text)
         return parse_market_status(json_response)
     except Exception as e:
-        print(f"[{datetime.now()}] ✗ Parse error: {e}")
+        print(f"[{datetime.now()}]  Parse error: {e}")
         return None
 
 
@@ -177,7 +177,7 @@ def store_market_status(status):
 # ================= JOB =======================
 
 def job():
-    print(f"\n[{datetime.now()}]  Running scheduled job...")  # Log start of job
+    print(f"\n[{datetime.now()}]  Running every Minute.")  # Log start of job
 
     session = requests.Session()
 
@@ -201,7 +201,7 @@ def main():
     init_db()
 
     print("\n" + "=" * 60)
-    print("MARKET STATUS MONITOR")
+    print("NEPSE UAT ATrad UAT testing")
     print("=" * 60)
 
     job()  # run once immediately
@@ -214,9 +214,8 @@ def main():
             schedule.run_pending()
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\nStopped by user.")
+        print("\nStopped by Dipendra.")
 
-# ============================================
 
 
 if __name__ == "__main__":
